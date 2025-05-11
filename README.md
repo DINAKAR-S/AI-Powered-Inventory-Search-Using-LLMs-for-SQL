@@ -57,7 +57,7 @@ git clone https://github.com/DINAKAR-S/AI-Powered-Inventory-Search-Using-LLMs-fo
 ### 2. Navigate to the Project Directory:
 
 ```bash
-cd AI-Powered-Inventory-Search
+cd AI-Powered-Inventory-Search-Using-LLMs-for-SQL
 ```
 
 ### 3. (Optional) Create and Activate a Virtual Environment:
