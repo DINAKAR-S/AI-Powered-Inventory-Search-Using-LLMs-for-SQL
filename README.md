@@ -1,100 +1,134 @@
-# AI-Powered Inventory Search Using LLMs for SQL
+# AI Powered Inventory Search Using LLM for SQL
 
-This project is designed for real-time use cases where data analysts can perform inventory searches in an optimal manner. Instead of manually figuring out SQL queries for each search, analysts can simply ask natural language questions, and the system will automatically generate the necessary SQL queries to fetch the relevant data. This enhances productivity and allows for faster, more efficient decision-making in inventory management and sales analysis.
+This project provides an AI-powered inventory search solution utilizing Language Models (LLMs) to execute SQL queries. It allows data analysts to perform complex searches on an inventory database without manually writing SQL queries, making it optimal for faster, easier data retrieval.
 
-## Project Structure
+### Real-Time Use Case:
+This project is designed for data analysts who need to perform quick searches on large datasets. Rather than manually crafting every SQL query, the system uses LLMs like Google Gemini to interpret user queries and return accurate SQL results. The model can also generate complex queries and optimize search results using techniques like Few-Shot Learning.
 
-The project follows a simple structure:
+Though LLMs are powerful, sometimes they may generate incorrect queries. To address this, we use the Few-Shot method to guide the model by providing example queries, improving its accuracy in handling complex queries.
 
-```
+## Features:
+- AI-powered search for inventory data using Google Gemini LLM.
+- Handles complex queries without needing to write SQL manually.
+- Integrates with MySQL database to fetch and process data.
+- Optimized using Few-Shot Learning to handle complex queries.
+- User-friendly interface with Streamlit.
 
+## File Structure:
+```plaintext
 AI-Powered-Inventory-Search/
-│
-├── chroma_db/               # Chroma database storage
-├── database/                # MySQL database setup
-│
-├── .env                     # Environment variables (Google Gemini API key)
-├── few_shots.py             # Few-shot training data for the model
-├── langchain_helper.py      # Helper functions to build the LangChain pipeline
-├── main.py                  # Main Streamlit app for querying the inventory
-└── requirements.txt         # Python dependencies
-
+├── chroma/                  # Folder for Chroma database
+├── database/                # Folder for SQL database scripts
+├── .env                     # Environment file to store API keys
+├── few_shots.py             # Contains few-shot examples for complex queries
+├── langchain_helper.py      # Helper functions for LangChain setup
+├── main.py                  # Main application file (Streamlit)
+├── requirements.txt         # Python dependencies
 ````
 
-## Setup Instructions
+## Requirements:
 
-Follow these steps to set up and run the project locally:
+Before running the application, ensure the following dependencies are installed:
 
-### 1. Install MySQL and MySQL Workbench
-Ensure that **MySQL** and **MySQL Workbench** are installed on your system. You will use MySQL Workbench to run SQL queries on the database.
+* Python 3.8+
+* MySQL or MariaDB
+* Google Gemini API Key (from [Google AI Studio](https://aistudio.google.com/app/apikey))
 
-### 2. Setup the Database
+### Dependencies:
 
-1. Open **MySQL Workbench** and navigate to the `database` folder in the project.
-2. Inside the `database` folder, you should find the necessary SQL scripts to set up your T-shirt inventory database.
-3. Run the SQL script in MySQL Workbench to create the database and necessary tables.
+* `streamlit`
+* `langchain`
+* `chromadb`
+* `google-generativeai`
+* `pymysql`
+* `python-dotenv`
+* `huggingface-hub`
 
-### 3. Install Python Dependencies
+## Setup Instructions:
 
-Make sure you have Python 3.12 or higher installed. Install the required libraries by running:
+### 1. Clone the Repository:
+
+Clone the repository to your local system using Git:
+
+```bash
+git clone https://github.com/DINAKAR-S/AI-Powered-Inventory-Search-Using-LLMs-for-SQL.git
+```
+
+### 2. Navigate to the Project Directory:
+
+```bash
+cd AI-Powered-Inventory-Search
+```
+
+### 3. (Optional) Create and Activate a Virtual Environment:
+
+It’s recommended to use a virtual environment to isolate the project dependencies.
+
+* Create a virtual environment:
+
+  ```bash
+  python -m venv venv
+  ```
+
+* Activate the virtual environment:
+
+  * On Windows:
+
+    ```bash
+    .\venv\Scripts\activate
+    ```
+  * On macOS/Linux:
+
+    ```bash
+    source venv/bin/activate
+    ```
+
+### 4. Install Dependencies:
+
+Install all the required libraries using the following command:
 
 ```bash
 pip install -r requirements.txt
-````
+```
 
-### 4. Set Up the Google Gemini API Key
+### 5. Set Up Google Gemini API Key:
 
-1. Visit [AI Studio Google API](https://aistudio.google.com/app/apikey) to generate your **Google Gemini API key**.
-2. Save the generated API key into a `.env` file in the root directory of the project, using the following format:
+Go to [Google AI Studio](https://aistudio.google.com/app/apikey) to obtain your Google Gemini API key. Then, create a `.env` file in the root directory of your project and add your API key:
 
 ```plaintext
 GOOGLE_GEMINI_API_KEY=your_api_key_here
 ```
 
-### 5. Run the Application
+### 6. Set Up MySQL Database:
 
-After setting up the environment and API key, run the application using:
+1. Open the `database` folder and run the SQL scripts in MySQL Workbench or your preferred SQL client.
+2. Make sure that the MySQL server is running and accessible.
+
+### 7. Run the Application:
+
+Once everything is set up, run the application using Streamlit:
 
 ```bash
 streamlit run main.py
 ```
 
-This will launch a **Streamlit web interface** where you can interact with the inventory database by asking natural language queries. The app will convert your questions into SQL queries, fetch the data, and display the answers.
+This will launch the web application in your browser, where you can ask natural language queries to retrieve inventory data.
 
-### 6. Example Queries
+## Example Queries:
 
-Here are some example queries you can try once the app is up and running:
+1. **How many t-shirts do we have left for Nike in XS size and white color?**
+2. **How much is the total price of the inventory for all S-size t-shirts?**
+3. **If we have to sell all the Levi’s T-shirts today with discounts applied, how much revenue will our store generate?**
+4. **How many white color Levi's shirts are available in stock?**
 
-* "How many white Levi's T-shirts are in stock?"
-* "What is the total price of the inventory for all S-size T-shirts?"
-* "How much revenue will the store generate if all large Nike T-shirts are sold after discounts?"
+## Conclusion:
 
-### 7. Folder Details
+This project leverages AI-powered language models to make complex SQL database queries easier for data analysts and non-technical users. It is designed to help teams and businesses retrieve crucial data efficiently without the need to write intricate SQL queries. By utilizing Few-Shot Learning, we improve the model's ability to handle more sophisticated and nuanced queries.
 
-* **chroma\_db/**: This folder stores the vector database used by LangChain for semantic search. It stores the embeddings and metadata used by the AI model to find relevant examples for query generation.
-* **database/**: This folder contains the SQL scripts to set up the T-shirt inventory database.
-* **.env**: Store your environment variables, such as the Google Gemini API key, here.
-* **few\_shots.py**: Contains the few-shot examples that train the model on SQL query generation from natural language.
-* **langchain\_helper.py**: Helper functions to build the LangChain pipeline for SQL database interaction and LLM integration.
-* **main.py**: The main Streamlit app that allows users to input natural language queries and fetch results from the database.
+### Disclaimer:
 
-## Requirements
+Though LLMs are a powerful tool, sometimes they may generate incorrect or suboptimal queries. In such cases, the Few-Shot method helps to guide the model by providing it with examples of complex queries.
 
-* Python 3.12 or higher
-* MySQL
-* Google Gemini API Key
-* Libraries listed in `requirements.txt`
-
-## License
+## License:
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-### Use Case
-
-This project is built with **data analysts** in mind who need to perform fast and efficient searches in large databases. Instead of manually constructing SQL queries, they can simply ask questions like "How many white Levi's T-shirts are in stock?" or "What is the total revenue from selling large Nike T-shirts after discounts?" The system will generate the SQL queries for them and fetch the answers in real time, saving time and increasing efficiency in daily tasks.
-
----
-
-### You can make this as an Template and use it for various other datasets of your company
