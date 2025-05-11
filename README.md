@@ -10,12 +10,12 @@ The project follows a simple structure:
 
 AI-Powered-Inventory-Search/
 │
-├── chroma\_db/               # Chroma database storage
+├── chroma_db/               # Chroma database storage
 ├── database/                # MySQL database setup
 │
 ├── .env                     # Environment variables (Google Gemini API key)
-├── few\_shots.py             # Few-shot training data for the model
-├── langchain\_helper.py      # Helper functions to build the LangChain pipeline
+├── few_shots.py             # Few-shot training data for the model
+├── langchain_helper.py      # Helper functions to build the LangChain pipeline
 ├── main.py                  # Main Streamlit app for querying the inventory
 └── requirements.txt         # Python dependencies
 
